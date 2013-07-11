@@ -37,7 +37,7 @@ class User {
    /**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	private $screenName;
+	private $username;
 
    /**
 	 * @ORM\Column(type="string", length=50)
@@ -77,7 +77,7 @@ class User {
 	private $registerIp;
 
    /**
-	 * @ORM\Column(type="string", length=50)
+	 * @ORM\Column(type="string", length=50, nullable=true)
 	 */
 	private $type;
 
@@ -85,11 +85,6 @@ class User {
 	 * @ORM\Column(type="string", length=50)
 	 */
 	private $status;
-
-   /**
-	 * @ORM\Column(type="string", length=50)
-	 */
-	private $verified;
 
 	/**
 	 * @ORM\OneToOne(targetEntity="models\Address")
@@ -138,15 +133,7 @@ class User {
 	    $this->password = $password;
 	}
 
-	public function getScreenName()
-	{
-	    return $this->screenName;
-	}
 
-	public function setScreenName($screenName)
-	{
-	    $this->screenName = $screenName;
-	}
 
 	public function getPhone()
 	{
@@ -228,16 +215,6 @@ class User {
 	    $this->status = $status;
 	}
 
-	public function getVerified()
-	{
-	    return $this->verified;
-	}
-
-	public function setVerified($verified)
-	{
-	    $this->verified = $verified;
-	}
-
 	public function getAddress()
 	{
 	    return $this->address;
@@ -246,6 +223,16 @@ class User {
 	public function setAddress($address)
 	{
 	    $this->address = $address;
+	}
+
+	public function getUsername()
+	{
+	    return $this->username;
+	}
+
+	public function setUsername($username)
+	{
+	    $this->username = $username;
 	}
 }
 ?>
