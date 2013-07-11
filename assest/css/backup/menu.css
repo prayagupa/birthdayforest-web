@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+@define{
+	/* tab-background:#D1232C; */
+	tab-background:#017FFF;
+	tab-border:#017FFF;
+	tab-border-hover:#555;
+	tab-hover-background:#333; 
+	/* tab-hover-background:l-adjust($(tab-background) -10%); */
+	menu-text-shadow:l-adjust($(tab-background) -10%);
+	/* menu-item-hover-background:#357679; */
+	menu-item-hover-background:l-adjust($(tab-background) -10%);
+	menu-item-border-bottom:#224d4f;
+	menu-item-border-top:#224d4f;
+}
+
+/*
+tab-background:#D1232C;
+	tab-border:#650005;
+	tab-hover-background:#AA030C;
+*/
+/* Root = Horizontal, Secondary = Vertical */
+ul#navmenu {
+  border: 0 none;
+  padding: 0;
+  list-style: none;
+  height: 29px;
+  color:#fff;
+  
+}
+
+ul#navmenu li{
+  margin: 0;
+  border: none;
+  padding: 0;
+  float: left; /*For Gecko*/
+  display: inline;
+  list-style: none;  
+  position: relative;
+
+}
+
+
+ul#navmenu li.chat{
+  margin: 0;
+  border: none;
+  padding: 0;
+  float: left; /*For Gecko*/
+  display: inline;
+  list-style: none;  
+  position: relative;
+  z-index: 100;  
+}
+
+ul#navmenu li.btn_chat{
+  float: right; /*For Gecko*/
+  /*background: #29AAE1 url(../images/chat_ico.gif) no-repeat left;*/
+  
+
+  padding: 0 0 0 29px;
+
+}
+
+
+ul#navmenu li.account{
+	float: right;
+}
+
+ul#navmenu ul {
+  margin: 0; 
+  border: 0 none;
+  padding: 10px 10px 10px 10px;
+  list-style: none;
+  display: none;
+  position: absolute;
+  left: 100;
+  top: 31px;
+  width: 180px;
+  background: $(tab-hover-background);
+  z-index:999;
+  /* border-radius: 0 5px 5px 5px; */
+}
+
+ul#navmenu ul.subactive{
+	display: block;
+}
+
+]ul#navmenu ul:after /*From IE 7 lack of compliance*/{
+  clear: both;
+  display: block;
+  font: 1px/0px serif;
+  content: ".";
+  height: 0;
+  visibility: hidden;
+}
+
+ul#navmenu ul.c_report{
+	width:570px;
+	right:0;
+	padding:10px 0 10px 10px;
+}
+
+ul#navmenu ul.c_report li{
+	padding:0 10px 0 0;
+}
+
+ul#navmenu ul.c_report ul{
+	padding:10px;
+	background:#710006;
+	border:1px solid #ff7077;
+	top:-1px;
+}
+
+ul#navmenu ul li{
+  float: left; /*For IE 7 lack of compliance*/
+  display: block !important;
+  display: inline; /*For IE*/
+  margin:0 0 0 0;
+  width: 180px;
+/*  z-index: 100;  */
+}
+
+/*ul#navmenu ul ul li{
+  z-index: 999;  
+}
+*/
+/* Root Menu */
+ul#navmenu a, ul#navmenu a.right, ul#navmenu a.active{
+  padding: 7px 10px 7px 10px;
+  *padding: 7px 10px 7px 10px;
+  float: none !important; /*For Opera*/
+  float: left; /*For IE*/
+  display: block;	
+  color: #fff;
+  font: 11px Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  height: auto !important;
+  text-transform:uppercase;
+  background: $(tab-background);
+  margin:0 5px 0 0;
+	-moz-border-radius:5px 5px 0 0;
+  -webkit-border-radius:5px 5px 0 0;
+  border-radius:5px 5px 0 0;
+  border:1px solid $(tab-border);
+  border-bottom:none;
+  text-shadow:1px 1px 0px $(menu-text-shadow);
+  height: 0%; /*For IE*/
+}
+
+/* Root Menu Hover Persistence */
+ul#navmenu a:hover,
+ul#navmenu li:hover a,
+ul#navmenu li.iehover a  {
+  color: #fff;
+  border:1px solid $(tab-hover-background);
+  border-bottom : 2px solid $(tab-hover-background);
+  background: $(tab-hover-background);
+}
+
+ul#navmenu li.btn_chat:hover{border-bottom:0px; background-color: #aa030c;}
+
+/* 2nd Menu */
+ul#navmenu ul a{
+	
+  padding: 8px 10px 8px 8px;
+}
+
+ul#navmenu li:hover li a,
+ul#navmenu li.iehover li a {
+  float: none;
+  background: none;
+  margin:0;
+  color: #fff;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: none;
+  border-bottom: 1px solid $(menu-item-border-bottom);
+    border-radius:0;
+}
+
+
+/* 2nd Menu Hover Persistence */
+ul#navmenu li:hover li a:hover,
+ul#navmenu li:hover li:hover a,
+ul#navmenu li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover a {
+  background: $(menu-item-hover-background);
+  color: #d7d7d7;
+  text-decoration: none;
+  border-bottom: 1px solid $(menu-item-border-bottom);
+}
+
+ul#navmenu ul ul,
+ul#navmenu ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 180px;
+}
+
+/* 3rd Menu */
+ul#navmenu ul ul a{
+  padding: 5px 18px;
+}
+
+/* 3rd Menu */
+ul#navmenu ul ul li{
+  width: 180px;
+}
+
+ul#navmenu li:hover li:hover li a,
+ul#navmenu li.iehover li.iehover li a {
+  float: none;
+  background: $(tab-hover-background);
+  border-top:$(menu-item-border-top) solid 1px; 
+  border-bottom:$(menu-item-border-bottom) solid 1px;
+  margin:0;
+  text-transform:none;
+  color: #FFF;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+ul#navmenu li:hover li:hover li a:first-child,
+
+
+/* 3rd Menu Hover Persistence */
+ul#navmenu li:hover li:hover li a:hover,
+ul#navmenu li:hover li:hover li:hover a,
+ul#navmenu li.iehover li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover li.iehover a {
+  background: $(menu-item-hover-background);
+  color: #FFF;
+  border-top:$(menu-item-border-top) solid 1px;
+  border-bottom:$(menu-item-border-bottom) solid 1px;
+
+}
+
+/* Do Not Move - Must Come Before display:block for Gecko */
+ul#navmenu li:hover ul ul,
+ul#navmenu li:hover ul ul ul,
+ul#navmenu li.iehover ul ul,
+ul#navmenu li.iehover ul ul ul {
+  display: none;
+  padding: 10px;
+}
+
+ul#navmenu li:hover ul,
+ul#navmenu ul li:hover ul,
+ul#navmenu ul ul li:hover ul,
+ul#navmenu li.iehover ul,
+ul#navmenu ul li.iehover ul,
+ul#navmenu ul ul li.iehover ul {
+  display: block;
+}

@@ -1,0 +1,155 @@
+/*========================================================
+    File:        employers.css
+    Description: CSS for employers page
+    Auther:      vince.liu@ef.com
+========================================================*/
+
+#searchbox .tg-label
+{
+    color: #5b5b5b;
+}
+
+.sb-main
+{
+    width: 85%;
+}
+.sb-advanced
+{
+    border-top: 1px dashed #d1d1d1;
+}
+.sb-l
+{
+    width: 55%;
+}
+.sb-r
+{
+    width: 45%;
+}
+.sb-btn
+{
+    right: 0;
+    bottom: 0;
+}
+/* - drag bar */
+#sb-experiencebar
+{
+    width: 274px;
+    border: 1px solid #dadada;
+    background: url(../../img/bg_bar.png) 0 0 repeat-x;
+}
+#sb-experiencebar .ui-slider-range
+{
+    width: 40%;
+    height: 17px;
+    background: url(../../img/bg_bar_progress.png) 0 0 repeat-x;
+}
+#sb-experiencebar .ui-slider-handle
+{
+    position: absolute;
+    width: 17px;
+    height: 26px;
+    top: -4px;
+    left: 0;
+    margin-left: -9px;
+    cursor: pointer;
+    background: url(../../img/dragbar.png) 0 0 no-repeat;
+    _background-image: url(../../img/ie6/dragbar.png);
+}
+
+.tb-topline
+{
+    height: 1px;
+    overflow: hidden;
+    background-color: #cacaca;
+    box-shadow: 0 5px 15px #333;
+}
+#teacherbox .tg-title
+{
+    border-bottom-width: 0;
+    padding: 0;
+    margin: 30px 0 0;
+}
+.tb-table
+{
+    width: 100%;
+    margin-top: -25px;
+}
+.tb-table tr
+{
+    border-bottom: 1px solid #ededed;
+}
+.tb-table tbody tr
+{
+    cursor: pointer;
+}
+.tb-table tbody tr:hover
+{
+    background-color: #f3faff;
+}
+.tb-table thead th,
+.tb-table thead td
+{
+    padding: 10px 0 15px;
+}
+.tb-table thead td
+{
+    font-weight: bold;
+    font-size: 11px;
+}
+.tb-table th,
+.tb-table td
+{
+    padding: 10px 0;
+}
+.tb-table th img
+{
+    vertical-align: middle;
+}
+.tb-table .tj-icon-new
+{
+    vertical-align: text-top;
+}
+.tb-table thead td,
+.tj-loc,
+.tj-date,
+.tj-experience
+{
+    color: #666;
+}
+.tb-viewbtn
+{
+    background-color: #646464;
+    display: inline-block;
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    -moz-transition: background 0.2s ease-in-out 0s;
+    -webkit-transition: background 0.2s ease-in-out 0s;
+    transition: background 0.2s ease-in-out 0s;
+}
+.tb-viewbtn:hover
+{
+    background-color: #9dcdcf;
+}
+.tb-viewbtn:active
+{
+    background-color: #3cb9be;
+}
+
+.tb-viewbtn span
+{
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 107px;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.tb-viewbtn:hover
+{
+    text-decoration: none;
+}

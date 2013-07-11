@@ -1,0 +1,50 @@
+/*========================================================
+    File:        employers.css
+    Description: CSS for employers page
+    Auther:      vince.liu@ef.com
+========================================================*/
+
+#employersbox h2
+{
+    font-size: 42px;
+    color: #3cb9be;
+    line-height: 1.2em;
+    letter-spacing: -2px;
+}
+
+#employersbox dt,
+#employersbox dd,
+#employersbox dt a
+{
+    color: #4e4e4e;
+}
+#employersbox dt
+{
+    font-size: 24px;
+    line-height: 2em;
+}
+#employersbox dd
+{
+    font-size: 18px;
+    line-height: 1.5em;
+    padding-left: 28px;
+    background: url(../../img/icon_tick.png) 8px .5em no-repeat;
+    _background-image: url(../../img/ie6/icon_tick.png);
+}
+.eb-main
+{
+    width: 50%;
+    margin-left: 40px;
+}
+.eb-screen
+{
+    border: 1px solid #959595;
+    box-shadow: 0 5px 10px #ccc;
+}
+
+#eb-search
+{
+    margin-top: 32px;
+    padding-top: 27px;
+    border-top: 1px solid #cecece;
+}

@@ -1,0 +1,117 @@
+/*========================================================
+    File:        notifier.css
+    Description: CSS for Notifier page
+    Auther:      vince.liu@ef.com
+========================================================*/
+
+.jn-des
+{
+    line-height: 1.2em;
+}
+.promotionbox
+{
+    background-color: #ff9;
+    padding-bottom: 15px;
+    
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.promotionbox h2
+{
+    background-color: #fdf0bb;
+    line-height: 1.8em;
+    
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+#addcv .col-narrow
+{
+    width: 36%;
+}
+#addcv .ac-planwhere .col-wide
+{
+    width: 55%;
+}
+#addcv .ac-planwhere .col-narrow
+{
+    width: 40%;
+}
+.promotionbox h2,
+.promotionbox dl
+{
+    padding: 0 13px;
+}
+.promotionbox dt
+{
+    margin-top: 20px;
+    line-height: 1.5em;
+}
+.promotionbox dd
+{
+    margin-top: 5px;
+    line-height: 1.3em;
+}
+.input-m .tg-input
+{
+    min-width: 120px;
+    width: 120px;
+}
+.input-m .tg-select
+{
+    min-width: 137px;
+    width: 137px;
+}
+.input-l .tg-input
+{
+    min-width: 360px;
+    width: 360px;
+}
+.input-l .tg-select
+{
+    min-width: 372px;
+    width: 372px;
+}
+.pp-equation
+{
+    width: 240px;
+    line-height: 1.6em;
+}
+.pp-equation hr
+{
+    border-width: 0;
+    border-bottom: 1px dashed #cacaca;
+    padding-top: 8px;
+}
+#performancebox .col-wide
+{
+    width: 48%;
+}
+#performancebox .col-narrow
+{
+    width: 46%;
+    margin-left: 40px;
+}
+#performancebox .col-wide p,
+#performancebox .col-narrow p
+{
+    line-height: 1.5em;
+}
+
+/* + Subscribe */
+#subscribebox .tg-submit
+{
+    letter-spacing: 0;
+}
+.input-sm .tg-input
+{
+    min-width: 50px;
+    width: 50px;
+}
+
+.input-sm .tg-select
+{
+    min-width: 165px;
+    width: 165px;
+}
