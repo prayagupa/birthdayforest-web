@@ -2,6 +2,7 @@
 /**
  *@author Prayag
  */
+use models\constants\Gender;
 use models\Address;
 use models\Forest,
 	models\Plantation,
@@ -23,8 +24,6 @@ class Persistence_Control extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->schemas = array(	$this->doctrine->em->getClassMetadata('models\Address')
-								//,$this->doctrine->em->getClassMetadata('models\Forest')
-								//,$this->doctrine->em->getClassMetadata('models\Tree')
 								,$this->doctrine->em->getClassMetadata('models\Plantation')
 								,$this->doctrine->em->getClassMetadata('models\Transaction')
 								,$this->doctrine->em->getClassMetadata('models\User')
@@ -46,6 +45,7 @@ class Persistence_Control extends CI_Controller{
 		$this->drop();
 		$this->doctrine->tool->createSchema($this->schemas);
 		print "Fucking Schemas got created.<br/>";
+		$this->createRootUser();
 	}
 
 	public function drop(){
@@ -53,4 +53,27 @@ class Persistence_Control extends CI_Controller{
 		print "Fucking Schema got dropped.<br/>";
 		return;
 	}
+
+
+	/**
+	 *
+	 * create Root User
+	 */
+	public function createRootUser(){
+		 $user = new User();
+		 $user->setUsername("prayagupd");
+		 $user->setGender(Gender::MALE);
+		 $user->setName("Prayag Upd");
+		 $user->setPassword("123456");
+		 $user->setPhone("9849026704");
+		 $user->setStatus(1);
+		 $user->setEmail("prayag.upd@gmail.com");
+		 $user->setRegisterSource("WEB");
+		 $user->setRegisterIp("10.13.212.2");
+		 $this->doctrine->em->persist($user);
+		 $this->doctrine->em->flush();
+		 log_message("info","User {$user->getUsername()} created.");
+		 print "User {$user->getUsername()} created.<br/><br/><br/>";
+	}
+
 }
