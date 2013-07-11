@@ -198,67 +198,6 @@ class Doctrine {
 
 	 //create/drop/update database schemas based on  <tt>ClassMetadata</tt> class descriptors.
 	 $this->tool = new SchemaTool($this->em);
-	 /*
-	 if($this->em){
-	 	//ORM metadata descriptor for a class.
-		 $schemas = array(   $this->em->getClassMetadata('models\Region')
-		 					,$this->em->getClassMetadata('models\Country')
-							,$this->em->getClassMetadata('models\City')
-							,$this->em->getClassMetadata('models\Currency')
-							,$this->em->getClassMetadata('models\Contractor')
-							,$this->em->getClassMetadata('models\Sector')
-							,$this->em->getClassMetadata('models\Job')
-							,$this->em->getClassMetadata('models\SubContractor')
-							,$this->em->getClassMetadata('models\JobView')
-							,$this->em->getClassMetadata('models\JobApplied')
-							,$this->em->getClassMetadata('models\JobPostChargeConf')
-							,$this->em->getClassMetadata('models\PrivilegedUser')
-							,$this->em->getClassMetadata('models\JobNotify')
-		);
-
-		 //Create the databaseschema for the given array of ClassMetadata instances.
-		 //$_D = "CREATE";
-		 //$_D = "UPDATE";
-		   $_D = "X";
-		 if($_D=="CREATE"){
-		 	 print $_D;
-			 $this->tool->dropSchema($schemas);
-			 $this->tool->createSchema($schemas);
-			 print "Schemas created.";
-			 $user = new PrivilegedUser();
-			 $user->username="root";
-			 $user->password="123456";
-			 $this->em->persist($user);
-			 $this->em->flush();
-			 print "User created.";
-
-			 $country = new Country();
-			 $country->name="Belgium";
-			 $country->description = "Belgium";
-			 $country->active=TRUE;
-			 $this->em->persist($country);
-			 $this->em->flush();
-			 print "Country created.";
-
-		 }elseif($_D=="UPDATE"){
-			 //update schema
-			 $this->tool->updateSchema($schemas);
-			 //$sql = $tool->getUpdateSchemaSql($schemas,TRUE);
-			 //$count = count($sql);
-			 print "Schemas updated.<br/><br/><br/>";
-
-			 $country = new Country();
-			 $country->name="Belgium";
-			 $country->description = "Belgium";
-			 $country->active=TRUE;
-			 $this->em->persist($country);
-			 $this->em->flush();
-			 print "Country created.";
-
-			 //redirect('admin_control/add_region');
-		 }
-
-	 }
-*/
+	 
   }
 }
