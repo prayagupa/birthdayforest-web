@@ -13,11 +13,11 @@ use models\Forest,
 	Doctrine\Common\Util\Debug;
 /**
  *
- * http://example.com/index.php/Persistence_Control
+ * http://example.com/index.php/Migration_Control
  * @author prayag
  *
  */
-class Persistence_Control extends CI_Controller{
+class Migration_Control extends CI_Controller{
 	var $schemas;
 
 
