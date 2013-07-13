@@ -6,8 +6,11 @@ Install Dependencies
 
  `php tools/spark install -v0.1.6 codeigniter-payments`
 
-Tools Used
+TOOLS
 ==========
+  [Sparks](http://getsparks.org/install) - a package management system for Codeigniter
+     `php -r "$(curl -fsSL http://getsparks.org/go-sparks)"`
+
 
   [Getter setter generator for eclipse ide](http://pdt.plugins.e-surf.pl/features.php)
 
