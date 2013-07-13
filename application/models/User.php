@@ -5,6 +5,7 @@ namespace models;
 use models\Address;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass="models\repository\UserRepository")
  * @ORM\Table(name="User")
@@ -64,7 +65,7 @@ class User {
 	 * @gedmo\Timestampable(on="create")
 	 * @ORM\Column(type="datetime")
 	 */
-	private $registeredTimestamp;
+	private $registeredDate;
 
    /**
 	 * @ORM\Column(type="string", length=50)
@@ -165,15 +166,7 @@ class User {
 	    $this->dob = $dob;
 	}
 
-	public function getRegisteredTimestamp()
-	{
-	    return $this->registeredTimestamp;
-	}
 
-	public function setRegisteredTimestamp($registeredTimestamp)
-	{
-	    $this->registeredTimestamp = $registeredTimestamp;
-	}
 
 	public function getRegisterSource()
 	{
@@ -233,6 +226,16 @@ class User {
 	public function setUsername($username)
 	{
 	    $this->username = $username;
+	}
+
+	public function getRegisteredDate()
+	{
+	    return $this->registeredDate;
+	}
+
+	public function setRegisteredDate($registeredDate)
+	{
+	    $this->registeredDate = $registeredDate;
 	}
 }
 ?>

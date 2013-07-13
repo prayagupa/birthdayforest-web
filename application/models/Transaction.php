@@ -22,6 +22,12 @@ class Transaction {
 	 */
     private $gateway;
 
+
+   /**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+    private $gatewayTransactionId;
+
    /**
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
@@ -106,6 +112,16 @@ class Transaction {
 	public function setCreated($created)
 	{
 	    $this->created = $created;
+	}
+
+	public function getGatewayTransactionId()
+	{
+	    return $this->gatewayTransactionId;
+	}
+
+	public function setGatewayTransactionId($gatewayTransactionId)
+	{
+	    $this->gatewayTransactionId = $gatewayTransactionId;
 	}
 }
 ?>

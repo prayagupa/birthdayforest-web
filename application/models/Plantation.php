@@ -97,8 +97,10 @@ class Plantation {
 	 */
     private $transaction;
 
-
-
+   /**
+	 * @ORM\OneToMany(targetEntity="models\PlantationHoles", mappedBy="plantation")
+	 */
+    private $holes;
 
    	public function getId()
    	{
@@ -229,5 +231,15 @@ class Plantation {
    	{
    	    $this->transaction = $transaction;
    	}
+
+	public function getHoles()
+	{
+	    return $this->holes;
+	}
+
+	public function setHoles($holes)
+	{
+	    $this->holes = $holes;
+	}
 }
 ?>
