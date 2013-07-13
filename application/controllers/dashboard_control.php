@@ -18,7 +18,38 @@ class Dashboard_Control extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		print "Coming Soon";
+		$templateData = array();
+		$this->load->spark('codeigniter-payments/0.1.6/');
+		$this->load->view('MasterView',$templateData);
+	}
+
+	public function pay(){
+		$this->load->spark('codeigniter-payments/0.1.6/');
+		if($this->input->post()){
+
+			//configure the parameters for the payment request
+			$paymentParameters = array(
+							    'cc_type'       => 'foo',
+							    'cc_number'     => 'foo',
+							    'cc_exp'        => 'foo',
+							    'first_name'    => 'foo',
+							    'last_name'     => 'foo',
+							    'street'        => 'foo',
+							    'street2'       => 'foo',
+							    'city'          => 'foo',
+							    'state'         => 'foo',
+							    'country'       => 'foo',
+							    'postal_code'   => 'foo',
+							    'amt'           => 'foo',
+							    'currency_code' => 'USD'
+			);
+
+			//make the call
+			$paymentResponse = $this->payments->payment_action('paypal_paymentspro', $paymentParameters);
+
+			//print the response
+			print_r($paymentResponse);
+		}
 	}
 }
 
