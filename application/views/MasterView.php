@@ -7,7 +7,7 @@
 
 <meta name="description" content="birthday" />
 
-<link href="<?php print base_url()."assest/css/bootstrap.min.css"?> rel="stylesheet" />
+<link href="<?php print base_url()."assest/css/bootstrap.min.css"?>" rel="stylesheet" />
 <link href="<?php print base_url()."assest/css/bootstrap-responsive.min.css"?> rel="stylesheet" />
 
 <script type="text/javascript" src="<?php print base_url()."assest/js/bootstrap.min.js"?>"></script>

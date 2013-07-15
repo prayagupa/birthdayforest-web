@@ -191,7 +191,7 @@ $config['log_threshold'] = 2;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '/var/www/ZamoonCI212/';
+$config['log_path'] = '/var/www/bfDoc/';
 
 /*
 |--------------------------------------------------------------------------
