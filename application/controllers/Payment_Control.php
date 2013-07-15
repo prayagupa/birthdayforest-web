@@ -2,6 +2,13 @@
 
 class Payment_Control extends CI_Controller {
 
+	private $plantationRepository;
+
+
+	function __construct(){
+		$plantationRepository= $this->doctrine->em->getRepository('models\Plantation');
+	}
+
 	public function pay(){
 		$this->load->spark('codeigniter-payments/0.1.6/');
 		if($this->input->post()){
@@ -30,19 +37,24 @@ class Payment_Control extends CI_Controller {
 			print_r($paymentResponse);
 		}
 	}
-	
-	
+
+
 	public function esewasuccess(){
 		//TODO
 		//$plantation update with the plantationCode
 		//processPayment and update $plantation status from PENDING to REQUESTED
 		//notify that user(email, sms)
-		//$plantation = $plantationRepository->getByPlantationCode($plantationCode);
-		//$transaction = processTransaction($plantationCode, $amount);
+		$orderId = $this->input->get('oid');
+        $amount  = $this->input->get('amt');
+        $refId   = $this->input->get('refId');
+		$plantation = $plantationRepository->getById($orderId);
+		if(null!=$plantation){
+			//$transaction = processTransaction($plantationCode, $amount);
+		}
 	}
 
 	public function esewafailure(){
-			                
+
 	}
 
 }
