@@ -9,7 +9,7 @@ class Payment_Control extends CI_Controller {
 
 
 	function __construct(){
-		$plantationRepository= $this->doctrine->em->getRepository('models\Plantation');
+		parent::__construct();
 	}
 
 	public function pay(){
@@ -50,6 +50,7 @@ class Payment_Control extends CI_Controller {
 		$orderId = $this->input->get('oid');
         $amount  = $this->input->get('amt');
         $refId   = $this->input->get('refId');
+        $plantationRepository= $this->doctrine->em->getRepository('models\Plantation');
 		$plantation = $plantationRepository->getJustPaidPlantationById($orderId);
 		if(null!=$plantation){
 			$transaction = new Transaction();
@@ -59,7 +60,7 @@ class Payment_Control extends CI_Controller {
 			$transaction->setGateway(Gateway::ESEWA);
 
 			//holes
-
+			//FIXME
 			$plantation->setTransaction($transaction);
 			$this->doctrine->em->persist($plantation);
 		}
