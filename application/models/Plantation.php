@@ -33,7 +33,7 @@ class Plantation {
 	 * @var PlantationStatus
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
-    private $status=PlantationStatus::REQUESTED;
+    private $status=PlantationStatus::PENDING;
 
    /**
 	 * @ORM\Column(type="string", length=255, nullable=false)

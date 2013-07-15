@@ -2,7 +2,8 @@
 namespace models\constants;
 
 class PlantationStatus{
-	const REQUESTED="PENDING";
+	const PENDING="PENDING";
+	const REQUESTED="REQUESTED";
 	const PLANTED="APPROVED";
 	const CANCELED="DELETED";
 }
