@@ -3,6 +3,8 @@
  *@author Prayag
  */
 
+use models\constants\PlantationType;
+use models\constants\PlantationStatus;
 use Doctrine\DBAL\Schema\Schema;
 
 use models\constants\Gender;
@@ -22,7 +24,7 @@ use models\Forest,
  */
 class Migration_Control extends CI_Controller{
 	var $schemas;
-
+	private $userRepository;
 
 	public function __construct(){
 		parent::__construct();
@@ -37,7 +39,7 @@ class Migration_Control extends CI_Controller{
 								,$this->doctrine->em->getClassMetadata('models\StockTrees')
 								,$this->doctrine->em->getClassMetadata('models\Hole')
 						);
-
+	  $userRepository = $this->doctrine->em->getRepository('models\User');
 	}
 
 	public function index(){
@@ -55,6 +57,7 @@ class Migration_Control extends CI_Controller{
 		$this->doctrine->tool->createSchema($this->schemas);
 		print "Fucking Schemas got created.<br/>";
 		$this->createRootUser();
+		$this->createPlantation();
 	}
 
 	public function drop(){
@@ -105,6 +108,27 @@ class Migration_Control extends CI_Controller{
 		 $this->doctrine->em->flush();
 		 log_message("info","User {$user->getUsername()} created.");
 		 print "User {$user->getUsername()} created.<br/><br/><br/>";
+	}
+
+	/**
+	 *
+	 * create a forest
+	 */
+	public function createPlantation(){
+		 $plantation = new Plantation();
+		 $plantation->setPlantationFor("PRAYAG");
+		 $plantation->setQuantity(1);
+		 $plantation->setPlantationIp("192.168.2.1");
+		 $plantation->setStatus(PlantationStatus::PENDING);
+
+		 $planter = $this->doctrine->em->find('models\User',1);
+		 $plantation->setUser($planter);
+		 $plantation->setSource("WEB");
+		 $plantation->setType(PlantationType::SELF);
+		 $this->doctrine->em->persist($plantation);
+		 $this->doctrine->em->flush();
+		 log_message("info","Plantation id {$plantation->getId()} created.");
+		 print "Plantation {$plantation->getId()} created.<br/><br/><br/>";
 	}
 
 }

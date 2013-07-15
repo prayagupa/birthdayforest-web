@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php use models\constants\Gateway;
+use models\constants\TransactionStatus;
+use models\Transaction;
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Payment_Control extends CI_Controller {
 
@@ -47,9 +50,18 @@ class Payment_Control extends CI_Controller {
 		$orderId = $this->input->get('oid');
         $amount  = $this->input->get('amt');
         $refId   = $this->input->get('refId');
-		$plantation = $plantationRepository->getById($orderId);
+		$plantation = $plantationRepository->getJustPaidPlantationById($orderId);
 		if(null!=$plantation){
-			//$transaction = processTransaction($plantationCode, $amount);
+			$transaction = new Transaction();
+			$transaction->setAmount($amount);
+			$transaction->setGatewayTransactionId($refId);
+			$transaction->setStatus(TransactionStatus::PAID);
+			$transaction->setGateway(Gateway::ESEWA);
+
+			//holes
+
+			$plantation->setTransaction($transaction);
+			$this->doctrine->em->persist($plantation);
 		}
 	}
 
