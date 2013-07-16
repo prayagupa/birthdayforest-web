@@ -21,7 +21,7 @@ class Plantation {
    /**
 	 * @ORM\OneToOne(targetEntity="models\User")
 	 */
-    private $user;
+    private $planter;
 
    /**
 	 * @ORM\OneToMany(targetEntity="models\User", mappedBy="plantation")
@@ -112,14 +112,14 @@ class Plantation {
    	    $this->id = $id;
    	}
 
-   	public function getUser()
+   	public function getPlanter()
    	{
-   	    return $this->user;
+   	    return $this->planter;
    	}
 
-   	public function setUser($user)
+   	public function setPlanter($planter)
    	{
-   	    $this->user = $user;
+   	    $this->planter = $planter;
    	}
 
    	public function getStatus()

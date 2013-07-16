@@ -162,7 +162,7 @@ class Migration_Control extends CI_Controller{
 		 $plantation->setStatus(PlantationStatus::PENDING);
 
 		 $planter = $this->doctrine->em->find('models\User',1);
-		 $plantation->setUser($planter);
+		 $plantation->setPlanter($planter);
 
 		 $forest = $this->doctrine->em->find('models\Forest',$forestId);
 		 $tree = $this->doctrine->em->find('models\Tree',1);
