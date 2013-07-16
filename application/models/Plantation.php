@@ -93,7 +93,7 @@ class Plantation {
 	 */
 
    /**
-	 * @ORM\OneToOne(targetEntity="models\Transaction")
+	 * @ORM\OneToOne(targetEntity="models\Transaction", cascade={"persist"})
 	 */
     private $transaction;
 

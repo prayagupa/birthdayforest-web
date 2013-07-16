@@ -1,4 +1,5 @@
-<?php use models\constants\Gateway;
+<?php use models\constants\PlantationStatus;
+use models\constants\Gateway;
 use models\constants\TransactionStatus;
 use models\Transaction;
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -59,10 +60,18 @@ class Payment_Control extends CI_Controller {
 			$transaction->setStatus(TransactionStatus::PAID);
 			$transaction->setGateway(Gateway::ESEWA);
 
-			//holes
 			//FIXME
+			//IPN
+			//holes
+			$plantation = $this->doctrine->em->find('models\Plantation',$orderId);
+			$plantation->setStatus(PlantationStatus::REQUESTED);
 			$plantation->setTransaction($transaction);
 			$this->doctrine->em->persist($plantation);
+			$this->doctrine->em->flush();
+			print "Thanks, your request has been sent.";
+		}else{
+			$templateData = array();
+			$this->load->view('MasterView',$templateData);
 		}
 	}
 
