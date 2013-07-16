@@ -107,7 +107,7 @@ EOT;
             $this->email->message($msg);
             $this->email->send();
 
-			print "Thanks, your request has been sent.";
+			print "Thank You for Planting Tree with us. Now you are the part of Green Celebration!";
 		}else{
 			$templateData = array();
 			$this->load->view('MasterView',$templateData);
