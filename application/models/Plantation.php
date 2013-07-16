@@ -98,7 +98,7 @@ class Plantation {
     private $transaction;
 
    /**
-	 * @ORM\OneToMany(targetEntity="models\PlantationHoles", mappedBy="plantation")
+	 * @ORM\OneToMany(targetEntity="models\PlantationHoles", mappedBy="plantation", cascade={"all"})
 	 */
     private $holes;
 
@@ -240,6 +240,10 @@ class Plantation {
 	public function setHoles($holes)
 	{
 	    $this->holes = $holes;
+	}
+
+	public function addHole(PlantationHoles $holes){
+		$this->holes->add($holes);
 	}
 }
 ?>

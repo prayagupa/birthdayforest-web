@@ -33,6 +33,10 @@ class Forest {
 	private $stocks;
 
    /**
+	 * @ORM\Column(type="string", length=255, nullable=false)
+	 */
+	private $image;
+   /**
 	 * @ORM\Column(type="boolean")
 	 */
     private $active=TRUE;
@@ -79,6 +83,7 @@ class Forest {
 	    $this->stocks = $stocks;
 	}
 
+
 	public function getActive()
 	{
 	    return $this->active;
@@ -88,5 +93,15 @@ class Forest {
 	{
 	    $this->active = $active;
 	}
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 }
 ?>

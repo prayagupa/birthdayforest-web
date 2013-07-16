@@ -3,6 +3,7 @@
  *@author Prayag
  */
 
+use models\PlantationHoles;
 use models\constants\PlantationType;
 use models\constants\PlantationStatus;
 use Doctrine\DBAL\Schema\Schema;
@@ -57,6 +58,8 @@ class Migration_Control extends CI_Controller{
 		$this->doctrine->tool->createSchema($this->schemas);
 		print "Fucking Schemas got created.<br/>";
 		$this->createRootUser();
+		$this->createForest();
+		$this->createTree();
 		$this->createPlantation();
 	}
 
@@ -94,25 +97,38 @@ class Migration_Control extends CI_Controller{
 	 * create a forest
 	 */
 	public function createForest(){
-		 $user = new User();
-		 $user->setUsername("prayagupd");
-		 $user->setGender(Gender::MALE);
-		 $user->setName("Prayag Upd");
-		 $user->setPassword("123456");
-		 $user->setPhone("9849026704");
-		 $user->setStatus(1);
-		 $user->setEmail("prayag.upd@gmail.com");
-		 $user->setRegisterSource("WEB");
-		 $user->setRegisterIp("10.13.212.2");
+		 $user = new Forest();
+		 $user->setName("Gaukhureshwor Community Forest");
+		 $user->setAddress("Kavre");
+		 $user->setActive(TRUE);
+		 $user->setImage("Gaukhureshwor.jpg");
 		 $this->doctrine->em->persist($user);
 		 $this->doctrine->em->flush();
-		 log_message("info","User {$user->getUsername()} created.");
-		 print "User {$user->getUsername()} created.<br/><br/><br/>";
+		 log_message("info","Forest {$user->getName()} created.");
+		 print "Forest {$user->getName()} created.<br/><br/><br/>";
 	}
 
 	/**
 	 *
-	 * create a forest
+	 * create a tree
+	 */
+	public function createTree(){
+		 $user = new Tree();
+		 $user->setName("Kalki");
+		 $user->setLocalName("Kalki");
+		 $user->setScientificName("Kalki");
+		 $user->setLifespan(2);
+		 $user->setImage("kalki.jpg");
+		 $user->setDescription("Kalki");
+		 $this->doctrine->em->persist($user);
+		 $this->doctrine->em->flush();
+		 log_message("info","Tree {$user->getName()} created.");
+		 print "Tree {$user->getName()} created.<br/><br/><br/>";
+	}
+
+	/**
+	 *
+	 * create a plantation
 	 */
 	public function createPlantation(){
 		 $plantation = new Plantation();
@@ -123,10 +139,25 @@ class Migration_Control extends CI_Controller{
 
 		 $planter = $this->doctrine->em->find('models\User',1);
 		 $plantation->setUser($planter);
+
+		 $forest = $this->doctrine->em->find('models\Forest',1);
+		 $tree = $this->doctrine->em->find('models\Tree',1);
+
+
 		 $plantation->setSource("WEB");
 		 $plantation->setType(PlantationType::SELF);
 		 $this->doctrine->em->persist($plantation);
 		 $this->doctrine->em->flush();
+
+	     for ($i=1; $i <= $plantation->getQuantity();$i++){
+			 $holes = new PlantationHoles();
+			 $holes->setTree($tree);
+			 $holes->setTreeCode("KAV-GAU-00".$i);
+			 $holes->setPlantation($plantation);
+			 $this->doctrine->em->persist($holes);
+			 $this->doctrine->em->flush();
+		 }
+
 		 log_message("info","Plantation id {$plantation->getId()} created.");
 		 print "Plantation {$plantation->getId()} created.<br/><br/><br/>";
 	}
