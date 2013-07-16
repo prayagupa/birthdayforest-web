@@ -74,7 +74,7 @@ class Payment_Control extends CI_Controller {
 			$mailTemplate = <<<EOT
 			<h3 style="color: #228D06">Thank You for Planting Tree with us. Now you are the part of Green Celebration!</h3>
 					<p>Dear {$plantation->getPlanter()->getUsername()},<br><br>
-					This email has been sent as a confirmation to your request for the plantation of {$plantation->getQuantity} {$treeName} tree(s) at {$forest}. We are very happy to process your request and you will be confirmed of the plantation of tree with a picture of the tree along with your name tag. The status of the tree will be updated to you in every 6 months for the period of three years. For more information, please read our terms and conditions <a href="#">here.</a><br><br>
+					This email has been sent as a confirmation to your request for the plantation of {$plantation->getQuantity()} {$treeName} tree(s) at {$forest}. We are very happy to process your request and you will be confirmed of the plantation of tree with a picture of the tree along with your name tag. The status of the tree will be updated to you in every 6 months for the period of three years. For more information, please read our terms and conditions <a href="#">here.</a><br><br>
 					You can view your invoice at <a href="#"></a>
 					</p>
 					<p style="font-size: 12px;"><strong>Important Notice!</strong><br><br>
