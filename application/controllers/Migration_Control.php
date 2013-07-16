@@ -3,6 +3,7 @@
  *@author Prayag
  */
 
+use models\Stock;
 use models\PlantationHoles;
 use models\constants\PlantationType;
 use models\constants\PlantationStatus;
@@ -60,6 +61,8 @@ class Migration_Control extends CI_Controller{
 		$this->createRootUser();
 		$this->createForest();
 		$this->createTree();
+
+		$this->createStock();
 		$this->createPlantation();
 	}
 
@@ -110,6 +113,23 @@ class Migration_Control extends CI_Controller{
 
 	/**
 	 *
+	 * create a stock
+	 */
+	public function createStock(){
+		 $user = new Stock();
+		 $user->setStockNumber(10);
+		 $forest = $this->doctrine->em->find('models\Forest',1);
+		 $user->setForest($forest);
+		 $user->setStartDate(new DateTime());
+		 $user->setAvailable(TRUE);
+		 $this->doctrine->em->persist($user);
+		 $this->doctrine->em->flush();
+		 log_message("info","Stock for {$user->getForest()->getName()} created.");
+		 print "Stock for {$user->getForest()->getName()} created.<br/><br/><br/>";
+	}
+
+	/**
+	 *
 	 * create a tree
 	 */
 	public function createTree(){
@@ -131,16 +151,20 @@ class Migration_Control extends CI_Controller{
 	 * create a plantation
 	 */
 	public function createPlantation(){
+
+		 $forestId = 1;
+		 $quantity = 1;
+		 //TODO check stock available for $forestId else throw Exception
 		 $plantation = new Plantation();
 		 $plantation->setPlantationFor("PRAYAG");
-		 $plantation->setQuantity(1);
+		 $plantation->setQuantity($quantity);
 		 $plantation->setPlantationIp("192.168.2.1");
 		 $plantation->setStatus(PlantationStatus::PENDING);
 
 		 $planter = $this->doctrine->em->find('models\User',1);
 		 $plantation->setUser($planter);
 
-		 $forest = $this->doctrine->em->find('models\Forest',1);
+		 $forest = $this->doctrine->em->find('models\Forest',$forestId);
 		 $tree = $this->doctrine->em->find('models\Tree',1);
 
 

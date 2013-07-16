@@ -241,9 +241,5 @@ class Plantation {
 	{
 	    $this->holes = $holes;
 	}
-
-	public function addHole(PlantationHoles $holes){
-		$this->holes->add($holes);
-	}
 }
 ?>
