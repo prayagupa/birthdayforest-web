@@ -156,7 +156,6 @@ class Migration_Control extends CI_Controller{
 		 $quantity = 1;
 		 //TODO check stock available for $forestId else throw Exception
 		 $plantation = new Plantation();
-		 $plantation->setPlantationFor("PRAYAG");
 		 $plantation->setQuantity($quantity);
 		 $plantation->setPlantationIp("192.168.2.1");
 		 $plantation->setStatus(PlantationStatus::PENDING);
@@ -166,9 +165,9 @@ class Migration_Control extends CI_Controller{
 
 		 $forest = $this->doctrine->em->find('models\Forest',$forestId);
 		 $tree = $this->doctrine->em->find('models\Tree',1);
+                 $plantation->setSource("WEB");
 
-
-		 $plantation->setSource("WEB");
+		 //TODO check type and set other properties like plantationFor etc
 		 $plantation->setType(PlantationType::SELF);
 		 $this->doctrine->em->persist($plantation);
 		 $this->doctrine->em->flush();
