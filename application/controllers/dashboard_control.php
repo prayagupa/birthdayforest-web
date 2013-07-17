@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+use models\Plantation
 
 class Dashboard_Control extends CI_Controller {
 
@@ -51,7 +52,47 @@ class Dashboard_Control extends CI_Controller {
 			print_r($paymentResponse);
 		}
 	}
+
+        public function request(){
+		if($this->input->post()){
+		 
+		 $forestId = $this->input->post('forestId');
+		 $treeId   = $this->input->post('treeId');
+		 $quantity = $this->input->post('numberOfTrees');
+		 $type     = $this->input->post('type');
+		 $userId   = 1;
+
+         	 //TODO create plantation and holes for number of quantity
+		 $plantation = new Plantation();
+                 $plantation->setPlantationFor($this->input->post('plantationFor'));
+                 $plantation->setQuantity($quantity);
+                 $plantation->setPlantationIp("192.168.2.1");
+                 $plantation->setStatus(PlantationStatus::PENDING);
+		 
+                 $planter = $this->doctrine->em->find('models\User',$userId);
+                 $plantation->setPlanter($planter);
+		 
+                 $forest = $this->doctrine->em->find('models\Forest',$forestId);
+                 $tree = $this->doctrine->em->find('models\Tree',$treeId);
+		 
+                 $plantation->setSource("WEB");
+                 $plantation->setType($type);
+                 $this->doctrine->em->persist($plantation);
+                 $this->doctrine->em->flush();
+		 
+                 for ($i=1; $i <= $plantation->getQuantity();$i++){
+                             $holes = new PlantationHoles();
+                             $holes->setTree($tree);
+                             $holes->setTreeCode("KAV-GAU-00".$i);
+                             $holes->setPlantation($plantation);
+                             $this->doctrine->em->persist($holes);
+                             $this->doctrine->em->flush();
+		 }
+
+
+	      }//end of post
+        }//end of request
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file dashboard.php */
+/* Location: ./application/controllers/dashboard.php */
