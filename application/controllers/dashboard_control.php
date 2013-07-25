@@ -1,5 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-use models\Plantation
+<?php use models\constants\PlantationType;
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+use models\Plantation;
 
 class Dashboard_Control extends CI_Controller {
 
@@ -52,46 +53,81 @@ class Dashboard_Control extends CI_Controller {
 			print_r($paymentResponse);
 		}
 	}
+/**
+ *
+ * json api for plantation request
+ * @param json $jsonRequest
+ * @throws Exception
+ */
+   public function request($jsonRequest){
+   	  var_dump($_POST);
+	  $jsonResponse = array();
+	  if(null!=$jsonRequest){
+	    try{
+		 if(!array_key_exists("forestId",$jsonRequest)){
+			throw new Exception("Forest Can't be blank.", "01");
+		 }
+		 if(!array_key_exists("treeId",$jsonRequest)){
+		 	throw new Exception("Tree Can't be blank.", "01");
+		 }
 
-        public function request(){
-		if($this->input->post()){
-		 
-		 $forestId = $this->input->post('forestId');
-		 $treeId   = $this->input->post('treeId');
-		 $quantity = $this->input->post('numberOfTrees');
-		 $type     = $this->input->post('type');
+		 if(!array_key_exists("numberOfTrees",$jsonRequest)){
+		 	throw new Exception("Number of Trees Can't be blank.", "01");
+		 }
+
+		 if(!array_key_exists("type",$jsonRequest)){
+		 	throw new Exception("Type Can't be blank.", "01");
+		 }
+
+		 $forestId = $jsonRequest["forestId"];
+		 $treeId = $jsonRequest["treeId"];
+		 $quantity = $jsonRequest["numberOfTrees"];
+		 $type     = $jsonRequest["type"];
 		 $userId   = 1;
 
-         	 //TODO create plantation and holes for number of quantity
-		 $plantation = new Plantation();
-                 $plantation->setPlantationFor($this->input->post('plantationFor'));
+         	     //TODO create plantation and holes for number of quantity
+		 		 $plantation = new Plantation();
+                 $plantation->setType($type);
+		         if($type==PlantationType::GIFT){
+		 				$plantationFor = $jsonRequest["plantationFor"];
+	                    $plantation->setPlantationFor($plantationFor);
+		 		 }
                  $plantation->setQuantity($quantity);
-                 $plantation->setPlantationIp("192.168.2.1");
+                 $plantation->setPlantationIp($_SERVER["REMOTE_ADDR"]);
                  $plantation->setStatus(PlantationStatus::PENDING);
-		 
+
                  $planter = $this->doctrine->em->find('models\User',$userId);
                  $plantation->setPlanter($planter);
-		 
+
                  $forest = $this->doctrine->em->find('models\Forest',$forestId);
                  $tree = $this->doctrine->em->find('models\Tree',$treeId);
-		 
+
                  $plantation->setSource("WEB");
-                 $plantation->setType($type);
                  $this->doctrine->em->persist($plantation);
                  $this->doctrine->em->flush();
-		 
+
+                 $treeCode = substr($forest->getName(), 0, 3)."-".substr($tree->getName(), 0, 3);
                  for ($i=1; $i <= $plantation->getQuantity();$i++){
                              $holes = new PlantationHoles();
                              $holes->setTree($tree);
-                             $holes->setTreeCode("KAV-GAU-00".$i);
+                             $holes->setTreeCode($treeCode."-".$i);
                              $holes->setPlantation($plantation);
                              $this->doctrine->em->persist($holes);
                              $this->doctrine->em->flush();
-		 }
+		         }//end of for
 
+		         $response["success"] = "true";
+		         //accessing the id field after calling flush will always contain the ID of a newly "persisted" entity.
+		         $response["message"] = $plantation->getId();
 
-	      }//end of post
-        }//end of request
+	    }catch (Exception $ex){
+				 $response["success"] = "false";
+		         $response["message"] = $ex->getMessage();
+	    }
+
+	    echo json_encode($response);
+	  }//end of post
+    }//end of request
 }
 
 /* End of file dashboard.php */
