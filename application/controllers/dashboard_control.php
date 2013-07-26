@@ -53,6 +53,13 @@ class Dashboard_Control extends CI_Controller {
 			print_r($paymentResponse);
 		}
 	}
+
+
+        public function authUser(){
+                //TODO
+		//check if user exists
+		//if not create a user with provided username, password and fullName
+        }	       
 /**
  *
  * json api for plantation request
@@ -62,7 +69,7 @@ class Dashboard_Control extends CI_Controller {
    public function request($jsonRequest){
    	  var_dump($_POST);
 	  $jsonResponse = array();
-	  if(null!=$jsonRequest){
+	  if(null!=$jsonRequest){//TODO also check user session
 	    try{
 		 if(!array_key_exists("forestId",$jsonRequest)){
 			throw new Exception("Forest Can't be blank.", "01");
@@ -83,7 +90,7 @@ class Dashboard_Control extends CI_Controller {
 		 $treeId = $jsonRequest["treeId"];
 		 $quantity = $jsonRequest["numberOfTrees"];
 		 $type     = $jsonRequest["type"];
-		 $userId   = 1;
+		 $userId   = 1;//get it from session
 
          	     //TODO create plantation and holes for number of quantity
 		 		 $plantation = new Plantation();
