@@ -12,4 +12,13 @@ use Doctrine\ORM\Query;
  */
 
 class UserRepository extends EntityRepository{
+	/**
+	 * search a user by username
+	 */
+      public function findByUsername($username){
+	      $queryBuilder = $this->_em->createQueryBuilder();
+	      $queryBuilder->select('u')
+              ->from('models\User','u')							                                                                      ->where("u.username='$username'");
+	      return $queryBuilder->getQuery()->getResult();
+      }
 }

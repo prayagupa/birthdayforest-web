@@ -55,10 +55,23 @@ class Dashboard_Control extends CI_Controller {
 	}
 
 
-        public function authUser(){
+	public function authUser(){
+		$jsonResponse = array();
                 //TODO
 		//check if user exists
 		//if not create a user with provided username, password and fullName
+		$username = $jsonRequest["username"];
+		$userRepository = $this->doctrine->em->getRepository('models\User');
+		$user = $userRepository->findByUsername($username);
+		if(null==$user){
+			$jsonResponse["success"] = false;
+			$jsonResponse["data"] = "User doesn't exist.";
+		}else{
+			$jsonResponse["success"] = true;
+			$jsonResponse["data"]="User already exists.";
+		}
+
+		echo json_encode($jsonResponse);
         }	       
 /**
  *
@@ -123,16 +136,16 @@ class Dashboard_Control extends CI_Controller {
                              $this->doctrine->em->flush();
 		         }//end of for
 
-		         $response["success"] = "true";
+		         $jsonResponse["success"] = "true";
 		         //accessing the id field after calling flush will always contain the ID of a newly "persisted" entity.
-		         $response["message"] = $plantation->getId();
+		         $jsonResponse["message"] = $plantation->getId();
 
 	    }catch (Exception $ex){
-				 $response["success"] = "false";
-		         $response["message"] = $ex->getMessage();
+				 $jsonResponse["success"] = "false";
+		         $jsonResponse["message"] = $ex->getMessage();
 	    }
 
-	    echo json_encode($response);
+	    echo json_encode($jsonResponse);
 	  }//end of post
     }//end of request
 }
