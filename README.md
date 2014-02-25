@@ -7,6 +7,10 @@ $ sudo apt-get install apache2
 $ sudo apt-get install mysql
 ```
 
+enable [mod_rewrite](http://askubuntu.com/a/48363/37643)
+----------------------------------------------------------
+
+
 change db config
 ------------------------
 
