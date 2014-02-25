@@ -1,3 +1,18 @@
+Setup
+========================
+
+```
+$ sudo apt-get install apache2
+
+$ sudo apt-get install mysql
+```
+
+change db config
+------------------------
+
+```
+$ vi application/config/development/database.php
+```
 
 Install Dependencies
 ========================

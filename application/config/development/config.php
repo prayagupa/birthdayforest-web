@@ -190,7 +190,8 @@ $config['log_threshold'] = 2;
 | Leave this BLANK unless you would like to set something other than the default
 | application/logs/ folder. Use a full server path with trailing slash.
 |
-*/
+ */
+//FIXME remove absolute path
 $config['log_path'] = '/var/www/bfDoc/';
 
 /*
